@@ -1,39 +1,50 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import { createStackNavigator } from "@react-navigation/stack";
+import React, { useEffect } from "react";
+import RegistrationScreen from "./screens/RegistrationScreen";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+import { ActivityIndicator } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import LoginScreen from "./screens/LoginScreen";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
+const Stack = createStackNavigator();
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+const AppLayout = () => {
+  const [fontsloaded] = useFonts({
+    "Roboto-Bold": require("@/assets/fonts/Roboto-Bold.ttf"),
+    "Roboto-Regular": require("@/assets/fonts/Roboto-Regular.ttf"),
+    "Roboto-Medium": require("@/assets/fonts/Roboto-Medium.ttf"),
+    "Roboto-Light": require("@/assets/fonts/Roboto-Light.ttf"),
   });
 
   useEffect(() => {
-    if (loaded) {
+    if (fontsloaded) {
       SplashScreen.hideAsync();
     }
-  }, [loaded]);
+  }, [fontsloaded]);
 
-  if (!loaded) {
-    return null;
+  if (!fontsloaded) {
+    return (
+      <SafeAreaProvider>
+        <ActivityIndicator />
+      </SafeAreaProvider>
+    );
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <SafeAreaProvider>
+      <Stack.Navigator
+        initialRouteName="registration"
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="registration" component={RegistrationScreen} />
+        <Stack.Screen name="login" component={LoginScreen} />
+      </Stack.Navigator>
+    </SafeAreaProvider>
   );
-}
+};
+
+export default AppLayout;
