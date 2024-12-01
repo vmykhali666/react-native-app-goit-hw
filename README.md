@@ -19,5 +19,5 @@
 3. Додати розмітку форми в компонент RegistrationScreen
 
 <p align="center">
- <img width="400px" src="@/assets/previews/registration.png" alt="registration page screenshot"/>
+ <img width="400px" src="https://github.com/user-attachments/assets/f042c007-13e9-44e6-b9af-ba3a387c14a1" alt="registration page screenshot"/>
 </p>
