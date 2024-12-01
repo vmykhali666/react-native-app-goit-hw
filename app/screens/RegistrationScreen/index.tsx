@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -18,6 +18,8 @@ import StylizedInputText from "@/components/ui/StylizedInputText";
 import StylizedButton from "@/components/ui/StylizedButton";
 import { globalStyles } from "@/styles/global";
 import AddRemoveButton from "@/components/ui/AddRemoveButton";
+import useKeyboardIsVisible from "@/hooks/useKeyboardIsVisible";
+import { RegistrationFormData } from "@/data/types";
 
 const RegistrationScreen = () => {
   const bottomPadding = 45;
@@ -29,6 +31,28 @@ const RegistrationScreen = () => {
   const handleLoginRedirectLink = () => {
     navigation.navigate("login");
   };
+
+  const [formData, setFormData] = useState<RegistrationFormData>({
+    login: "",
+    email: "",
+    password: "",
+  });
+
+  const handleRegister = () => {
+    console.log("Form Data:", formData);
+  };
+
+  const handleInputChange = (
+    name: keyof RegistrationFormData,
+    value: string
+  ) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  const isKeyboardVisible = useKeyboardIsVisible();
 
   return (
     <>
@@ -48,7 +72,9 @@ const RegistrationScreen = () => {
             style={[
               styles.container,
               {
-                paddingBottom: insets.bottom + bottomPadding,
+                paddingBottom: !isKeyboardVisible
+                  ? insets.bottom + bottomPadding
+                  : 0,
               },
             ]}
           >
@@ -61,25 +87,46 @@ const RegistrationScreen = () => {
             </View>
             <View style={styles.content}>
               <Text style={styles.title}>Реєстрація</Text>
-              <View style={styles.inputs}>
-                <StylizedInputText placeholderText="Логін" />
-                <StylizedInputText placeholderText="Адреса електронної пошти" />
+              <View
+                style={[
+                  styles.inputs,
+                  {
+                    marginBottom: isKeyboardVisible
+                      ? globalStyles.sizes.margins.defaultMargin
+                      : globalStyles.sizes.margins.marginBottom,
+                  },
+                ]}
+              >
+                <StylizedInputText
+                  placeholderText="Логін"
+                  textChanged={(text) => handleInputChange("login", text)}
+                />
+                <StylizedInputText
+                  placeholderText="Адреса електронної пошти"
+                  textChanged={(text) => handleInputChange("email", text)}
+                />
                 <StylizedInputText
                   placeholderText="Пароль"
                   withShowHideSecure={true}
+                  textChanged={(text) => handleInputChange("password", text)}
                 />
               </View>
-              <View style={styles.action}>
-                <StylizedButton text="Зареєструватися" onPress={() => {}} />
-                <TouchableOpacity onPress={() => {}}>
-                  <Text
-                    style={styles.alreadyHaveAccount}
-                    onPress={handleLoginRedirectLink}
-                  >
-                    Вже є акаунт? Увійти
-                  </Text>
-                </TouchableOpacity>
-              </View>
+              {!isKeyboardVisible && (
+                <View style={styles.action}>
+                  <StylizedButton
+                    text="Зареєструватися"
+                    onPress={handleRegister}
+                  />
+                  <TouchableOpacity>
+                    <Text
+                      style={styles.alreadyHaveAccount}
+                      onPress={handleLoginRedirectLink}
+                    >
+                      Вже є акаунт? Увійти
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              )}
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -98,8 +145,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: globalStyles.colors.white,
     width: "100%",
-    borderTopStartRadius: 25,
-    borderTopEndRadius: 25,
+    borderTopStartRadius: globalStyles.sizes.borderRadius.content,
+    borderTopEndRadius: globalStyles.sizes.borderRadius.content,
     fontFamily: globalStyles.mainFont.regular,
     paddingTop: 92,
   },
@@ -110,16 +157,16 @@ const styles = StyleSheet.create({
     transform: [{ translateX: -60 }],
   },
   content: {
-    paddingLeft: 16,
-    paddingRight: 16,
+    paddingLeft: globalStyles.sizes.padding,
+    paddingRight: globalStyles.sizes.padding,
   },
   avatarImage: {
     height: 120,
     width: 120,
-    borderRadius: 16,
+    borderRadius: globalStyles.sizes.borderRadius.avatar,
   },
   title: {
-    fontSize: 30,
+    fontSize: globalStyles.sizes.font.title,
     fontWeight: "medium",
     textAlign: "center",
     fontFamily: globalStyles.mainFont.medium,
@@ -129,16 +176,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    gap: 16,
-    marginBottom: 43,
-    marginTop: 32,
+    gap: globalStyles.sizes.padding,
+    marginBottom: globalStyles.sizes.margins.marginBottom,
+    marginTop: globalStyles.sizes.margins.defaultMargin,
   },
   action: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    gap: 16,
+    gap: globalStyles.sizes.padding,
   },
   alreadyHaveAccount: {
     color: globalStyles.colors.darkBlue,
