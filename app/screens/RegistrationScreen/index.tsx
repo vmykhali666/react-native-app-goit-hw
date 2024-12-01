@@ -20,6 +20,8 @@ import { globalStyles } from "@/styles/global";
 import AddRemoveButton from "@/components/ui/AddRemoveButton";
 
 const RegistrationScreen = () => {
+  const bottomPadding = 45;
+
   const insets = useSafeAreaInsets();
 
   const navigation = useNavigation();
@@ -29,19 +31,26 @@ const RegistrationScreen = () => {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <>
-        <StatusBar style="auto" />
+    <>
+      <StatusBar style="auto" />
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ImageBackground
           source={require("@/assets/images/mountains-bg.jpg")}
           style={styles.backgroundImage}
         />
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-          style={{ flex: 1, justifyContent: "flex-end" }}
-        >
+      </TouchableWithoutFeedback>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={{ flex: 1, justifyContent: "flex-end" }}
+      >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View
-            style={[styles.container, { paddingBottom: insets.bottom + 45 }]}
+            style={[
+              styles.container,
+              {
+                paddingBottom: insets.bottom + bottomPadding,
+              },
+            ]}
           >
             <View style={styles.avatarContent}>
               <Image
@@ -73,9 +82,9 @@ const RegistrationScreen = () => {
               </View>
             </View>
           </View>
-        </KeyboardAvoidingView>
-      </>
-    </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
+    </>
   );
 };
 

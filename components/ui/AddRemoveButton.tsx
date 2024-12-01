@@ -34,9 +34,10 @@ const AddRemoveButton: React.FC<AddRemoveButtonProps> = ({
                     style={styles.icon}
                     color={
                         hasContent
-                            ? globalStyles.colors.lightGray
+                            ? globalStyles.colors.strokeGray
                             : globalStyles.colors.accent
                     }
+                    fillColor={globalStyles.colors.white}
                 />
             </Animated.View>
         </TouchableOpacity>

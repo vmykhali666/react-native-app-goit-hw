@@ -1,9 +1,9 @@
 import React from "react";
 import Svg, { Circle, Path, SvgProps } from "react-native-svg";
 
-const AddIcon = ({ color = "white", ...props }: SvgProps & { color?: string }) => (
+const AddIcon = ({ color = "white", fillColor = "transparent", ...props }: SvgProps & { color?: string; fillColor?: string }) => (
   <Svg width={25} height={25} fill="none" {...props}>
-    <Circle cx={12.5} cy={12.5} r={12} stroke={color} />
+    <Circle cx={12.5} cy={12.5} r={12} fill={fillColor} stroke={color} />
     <Path
       fill={color}
       fillRule="evenodd"
