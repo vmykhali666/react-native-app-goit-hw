@@ -12,11 +12,13 @@ import {
 interface StylizedInputTextProps extends TextInputProps {
     placeholderText: string;
     withShowHideSecure?: boolean;
+    textChanged?: (text: string) => void;
 }
 
 const StylizedInputText: React.FC<StylizedInputTextProps> = ({
     placeholderText,
     withShowHideSecure = false,
+    textChanged,
     ...props
 }) => {
     const [text, setText] = useState("");
@@ -27,6 +29,13 @@ const StylizedInputText: React.FC<StylizedInputTextProps> = ({
         setShowPassword(!showPassword);
     };
 
+    const handleTextChange = (text: string) => {
+        setText(text);
+        if (textChanged) {
+            textChanged(text);
+        }
+    }
+
     return (
         <View style={styles.container}>
             <TextInput
@@ -36,9 +45,9 @@ const StylizedInputText: React.FC<StylizedInputTextProps> = ({
                     withShowHideSecure && styles.withSecure,
                 ]}
                 placeholder={placeholderText}
-                secureTextEntry={showPassword}
+                secureTextEntry={withShowHideSecure && showPassword}
                 value={text}
-                onChangeText={setText}
+                onChangeText={handleTextChange}
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
                 {...props}

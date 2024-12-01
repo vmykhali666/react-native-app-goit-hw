@@ -35,7 +35,7 @@ const AppLayout = () => {
   return (
     <SafeAreaProvider>
       <Stack.Navigator
-        initialRouteName="registration"
+        initialRouteName="login"
         screenOptions={{
           headerShown: false,
         }}
