@@ -1,48 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import PostsScreen from "./PostsScreen";
 import ProfileScreen from "./ProfileScreen";
 import CreatePostScreen from "./CreatePostScreen";
 import GridIcon from "@/assets/icons/GridIcon";
-import { globalStyles } from "@/styles/global";
 import ProfileIcon from "@/assets/icons/ProfileIcon";
 import PlusIcon from "@/assets/icons/PlusIcon";
-import { StyleSheet, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import CustomTabBar from "@/components/CustomTabBar";
 
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigator() {
-
-  const navigation = useNavigation();
-  
-  useEffect(() => {
-    const unsubscribe = navigation.addListener("focus", (e) => {
-      console.log(`TabNavigator focused${e}`);
-    });
-    return unsubscribe;
-  }, [navigation]);
-  
   return (
     <Tab.Navigator
-      screenOptions={{
-        tabBarButton: (props) => {
-          return (
-            <TouchableOpacity
-              {...props}
-              style={[props.style, styles.tabButton]}
-            />
-          );
-        },
-        tabBarActiveTintColor: globalStyles.colors.white,
-        tabBarInactiveTintColor: globalStyles.colors.secondary,
-        tabBarActiveBackgroundColor: globalStyles.colors.accent,
-        tabBarItemStyle: styles.tabItem,
-        tabBarIconStyle: styles.tabIcon,
-        tabBarStyle: styles.tabBar,
-        tabBarHideOnKeyboard: true,
-        tabBarShowLabel: false,
-      }}
+      screenOptions={{}}
+      tabBar={(props) => <CustomTabBar {...props} />}
     >
       <Tab.Screen
         name="posts"
@@ -79,25 +51,3 @@ export default function TabNavigator() {
     </Tab.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  tabItem: {
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  tabIcon: {
-    width: 24,
-    height: 24,
-  },
-  tabButton: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 20,
-    width: 70,
-    height: 40,
-  },
-  tabBar: {
-    paddingTop: 9,
-  },
-});
