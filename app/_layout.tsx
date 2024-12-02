@@ -6,6 +6,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { ActivityIndicator } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import LoginScreen from "./screens/LoginScreen";
+import TabNavigator from "./screens/(tabs)/_layout";
 
 const Stack = createStackNavigator();
 SplashScreen.preventAutoHideAsync();
@@ -35,13 +36,14 @@ const AppLayout = () => {
   return (
     <SafeAreaProvider>
       <Stack.Navigator
-        initialRouteName="login"
+        initialRouteName="(tabs)"
         screenOptions={{
           headerShown: false,
         }}
       >
         <Stack.Screen name="registration" component={RegistrationScreen} />
         <Stack.Screen name="login" component={LoginScreen} />
+        <Stack.Screen name='(tabs)' component={TabNavigator}/>
       </Stack.Navigator>
     </SafeAreaProvider>
   );
