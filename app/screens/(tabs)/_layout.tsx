@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import PostsScreen from "./PostsScreen";
 import ProfileScreen from "./ProfileScreen";
@@ -6,15 +6,24 @@ import CreatePostScreen from "./CreatePostScreen";
 import GridIcon from "@/assets/icons/GridIcon";
 import ProfileIcon from "@/assets/icons/ProfileIcon";
 import PlusIcon from "@/assets/icons/PlusIcon";
-import CustomTabBar from "@/components/CustomTabBar";
+import CustomTabBar, { RouteBehavior } from "@/components/CustomTabBar";
 
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigator() {
   return (
     <Tab.Navigator
-      screenOptions={{}}
-      tabBar={(props) => <CustomTabBar {...props} />}
+      initialRouteName="posts"
+      tabBar={(props) => (
+        <CustomTabBar
+          {...props}
+          routeOptions={[
+            { routeName: "posts", behavior: RouteBehavior.Fixed },
+            { routeName: "create-post", behavior: RouteBehavior.Swappable },
+            { routeName: "profile", behavior: RouteBehavior.Swappable },
+          ]}
+        />
+      )}
     >
       <Tab.Screen
         name="posts"
