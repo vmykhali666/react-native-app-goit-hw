@@ -31,8 +31,7 @@ const AddRemoveButton: React.FC<AddRemoveButtonProps> = ({
         <TouchableOpacity style={styles.button} onPress={onPress}>
             <Animated.View style={{ transform: [{ rotate }] }}>
                 <AddIcon
-                    style={styles.icon}
-                    color={
+                    strokeColor={
                         hasContent
                             ? globalStyles.colors.strokeGray
                             : globalStyles.colors.accent
@@ -50,7 +49,6 @@ const styles = StyleSheet.create({
         right: -12,
         bottom: 14,
     },
-    icon: {},
 });
 
 export default AddRemoveButton;

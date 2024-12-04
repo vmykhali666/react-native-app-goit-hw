@@ -7,9 +7,10 @@ export const globalStyles = {
   },
   colors: {
     primary: "#212121",
-    secondary: "#CC212121",
+    secondary: "rgba(33, 33, 33, 0.80)",
     accent: "#FF6C00",
     white: "#FFFFFF",
+    whiteTransparent: "rgba(255, 255, 255, 0.3)",
     regularGray: "#BDBDBD",
     strokeGray: "#E8E8E8",
     lightGray: "#F6F6F6",
