@@ -1,13 +1,10 @@
+import { AppIconProps } from "@/data/types";
 import React from "react";
 import Svg, { Path } from "react-native-svg";
 
-interface LogOutIconProps {
-  strokeColor?: string;
-  size?: number;
-}
-
-const LogOutIcon: React.FC<LogOutIconProps> = ({
+const LogOutIcon: React.FC<AppIconProps> = ({
   strokeColor = "#BDBDBD",
+  fillColor = "#BDBDBD",
   size = 24,
 }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">

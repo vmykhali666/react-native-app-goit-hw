@@ -1,15 +1,10 @@
+import { AppIconProps } from "@/data/types";
 import React from "react";
 import Svg, { Path } from "react-native-svg";
 
-interface CommentsIconProps {
-  fillColor?: string;
-  strokeColor?: string;
-  size?: number;
-}
-
-const CommentsIcon: React.FC<CommentsIconProps> = ({
-  fillColor = "#FF6C00",
-  strokeColor = "none",
+const CommentsIcon: React.FC<AppIconProps> = ({
+  strokeColor = "#BDBDBD",
+  fillColor = "#BDBDBD",
   size = 24,
 }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">

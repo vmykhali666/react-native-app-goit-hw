@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import PostsScreen from "./PostsScreen";
 import ProfileScreen from "./ProfileScreen";
@@ -7,6 +7,7 @@ import GridIcon from "@/assets/icons/GridIcon";
 import ProfileIcon from "@/assets/icons/ProfileIcon";
 import PlusIcon from "@/assets/icons/PlusIcon";
 import CustomTabBar, { RouteBehavior } from "@/components/CustomTabBar";
+import CustomHeader from "@/components/CustomHeader";
 
 const Tab = createBottomTabNavigator();
 
@@ -22,6 +23,7 @@ export default function TabNavigator() {
             { routeName: "create-post", behavior: RouteBehavior.Swappable },
             { routeName: "profile", behavior: RouteBehavior.Swappable },
           ]}
+          hiddenScreens={["create-post"]}
         />
       )}
     >
@@ -30,6 +32,12 @@ export default function TabNavigator() {
         component={PostsScreen}
         options={{
           headerTitle: "Публікації",
+          header: (props) => (
+            <CustomHeader
+              {...props}
+              showLogOutButton={true}
+            />
+          ),
           tabBarIcon: ({ color, size }) => (
             <GridIcon strokeColor={color} size={size} fillColor="transparent" />
           ),
@@ -40,6 +48,8 @@ export default function TabNavigator() {
         component={CreatePostScreen}
         options={{
           headerTitle: "Створити публікацію",
+          header: (props) => <CustomHeader {...props} showBackButton={true} />,
+          tabBarStyle: { display: "none" },
           tabBarIcon: ({ color }) => <PlusIcon strokeColor={color} />,
         }}
       />

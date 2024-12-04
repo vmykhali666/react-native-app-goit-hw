@@ -1,15 +1,10 @@
+import { AppIconProps } from "@/data/types";
 import React from "react";
 import Svg, { Path } from "react-native-svg";
 
-interface LikeIconProps {
-  strokeColor?: string;
-  fillColor?: string;
-  size?: number;
-}
-
-const LikeIcon: React.FC<LikeIconProps> = ({
-  strokeColor = "#000",
-  fillColor = "#FF6C00",
+const LikeIcon: React.FC<AppIconProps> = ({
+  strokeColor = "#BDBDBD",
+  fillColor = "#BDBDBD",
   size = 24,
 }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">

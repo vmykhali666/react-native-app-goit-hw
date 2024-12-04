@@ -1,15 +1,10 @@
+import { AppIconProps } from "@/data/types";
 import React from "react";
 import Svg, { Path } from "react-native-svg";
 
-interface ProfileIconProps {
-  fillColor?: string;
-  strokeColor?: string;
-  size?: number;
-}
-
-const ProfileIcon: React.FC<ProfileIconProps> = ({
-  fillColor = "none",
-  strokeColor = "#212121",
+const ProfileIcon: React.FC<AppIconProps> = ({
+  strokeColor = "#BDBDBD",
+  fillColor = "#BDBDBD",
   size = 24,
 }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill={fillColor}>

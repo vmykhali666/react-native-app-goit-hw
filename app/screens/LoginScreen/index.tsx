@@ -39,6 +39,7 @@ const LoginScreen = () => {
 
   const handleLogin = () => {
     console.log("Form Data:", formData);
+    navigation.navigate("home");
   };
 
   const handleInputChange = (name: keyof LoginFormData, value: string) => {

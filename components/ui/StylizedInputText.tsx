@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: globalStyles.colors.strokeGray,
         fontFamily: globalStyles.mainFont.regular,
+        textTransform: "none",
         padding: 16,
         borderRadius: 8,
         width: "100%",

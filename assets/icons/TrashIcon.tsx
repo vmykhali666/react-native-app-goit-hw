@@ -1,15 +1,10 @@
+import { AppIconProps } from "@/data/types";
 import React from "react";
 import Svg, { Path } from "react-native-svg";
 
-interface TrashIconProps {
-  fillColor?: string;
-  strokeColor?: string;
-  size?: number;
-}
-
-const TrashIcon: React.FC<TrashIconProps> = ({
-  fillColor = "#BDBDBD",
+const TrashIcon: React.FC<AppIconProps> = ({
   strokeColor = "#BDBDBD",
+  fillColor = "#BDBDBD",
   size = 24,
 }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill={fillColor}>

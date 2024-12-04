@@ -14,6 +14,7 @@ interface CustomTabBarProps extends BottomTabBarProps {
     routeName: string;
     behavior: RouteBehavior;
   }[];
+  hiddenScreens?: string[];
 }
 
 const CustomTabBar: React.FC<CustomTabBarProps> = ({
@@ -21,10 +22,16 @@ const CustomTabBar: React.FC<CustomTabBarProps> = ({
   descriptors,
   navigation,
   routeOptions = [],
+  hiddenScreens = [],
 }) => {
+
   const insets = useSafeAreaInsets();
 
   const focusedRoute = state.routes[state.index];
+
+  if (hiddenScreens.includes(focusedRoute.name)) {
+    return null;
+  }
 
   const focusedRouteOption = routeOptions.find(
     (option) => option.routeName === focusedRoute.name
@@ -100,7 +107,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     borderTopWidth: 1,
-    borderTopColor: "#ccc",
+    borderTopColor: globalStyles.colors.strokeGray,
     justifyContent: "center",
     paddingTop: 9,
     backgroundColor: globalStyles.colors.white,

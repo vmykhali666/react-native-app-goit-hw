@@ -36,14 +36,14 @@ const AppLayout = () => {
   return (
     <SafeAreaProvider>
       <Stack.Navigator
-        initialRouteName="(tabs)"
+        initialRouteName="login"
         screenOptions={{
           headerShown: false,
         }}
       >
         <Stack.Screen name="registration" component={RegistrationScreen} />
         <Stack.Screen name="login" component={LoginScreen} />
-        <Stack.Screen name='(tabs)' component={TabNavigator}/>
+        <Stack.Screen name='home' component={TabNavigator}/>
       </Stack.Navigator>
     </SafeAreaProvider>
   );

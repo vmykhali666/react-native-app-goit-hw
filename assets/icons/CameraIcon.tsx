@@ -1,13 +1,8 @@
+import { AppIconProps } from "@/data/types";
 import React from "react";
 import { Svg, G, Path, Defs, ClipPath, Rect } from "react-native-svg";
 
-interface CameraIconProps {
-  strokeColor?: string;
-  fillColor?: string;
-  size?: number;
-}
-
-const CameraIcon: React.FC<CameraIconProps> = ({
+const CameraIcon: React.FC<AppIconProps> = ({
   strokeColor = "#BDBDBD",
   fillColor = "#BDBDBD",
   size = 24,

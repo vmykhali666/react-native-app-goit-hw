@@ -1,0 +1,49 @@
+import { globalStyles } from '@/styles/global';
+import React from 'react';
+import { View, Text, Image, StyleSheet } from 'react-native';
+
+interface UserPostCardProps {
+    imageUrl: string;
+    name: string;
+    email: string;
+}
+
+const UserPostCard: React.FC<UserPostCardProps> = ({ imageUrl, name, email }) => {
+    return (
+        <View style={styles.card}>
+            <Image source={{ uri: imageUrl }} style={styles.image} />
+            <View style={styles.textContainer}>
+                <Text style={styles.name}>{name}</Text>
+                <Text style={styles.email}>{email}</Text>
+            </View>
+        </View>
+    );
+};
+
+const styles = StyleSheet.create({
+    card: {
+        flexDirection: 'row',
+        gap: 8,
+    },
+    image: {
+        width: 60,
+        height: 60,
+        borderRadius: 16,
+    },
+    textContainer: {
+        flex: 1,
+        justifyContent: 'center',
+    },
+    name: {
+        fontSize: 13,
+        fontFamily: globalStyles.mainFont.bold,
+        fontWeight: 'bold',
+    },
+    email: {
+        fontSize: 11,
+        fontFamily: globalStyles.mainFont.regular,
+        color: globalStyles.colors.secondary,
+    },
+});
+
+export default UserPostCard;

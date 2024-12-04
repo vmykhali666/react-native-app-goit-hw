@@ -12,6 +12,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import * as ImagePicker from "expo-image-picker";
 import { useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import StylizedInputText from "@/components/ui/StylizedInputText";
@@ -20,6 +21,7 @@ import { globalStyles } from "@/styles/global";
 import AddRemoveButton from "@/components/ui/AddRemoveButton";
 import useKeyboardIsVisible from "@/hooks/useKeyboardIsVisible";
 import { RegistrationFormData } from "@/data/types";
+import UniversalButton from "@/components/ui/UniversalButton";
 
 const RegistrationScreen = () => {
   const bottomPadding = 45;
@@ -28,11 +30,44 @@ const RegistrationScreen = () => {
 
   const navigation = useNavigation();
 
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ["images"],
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+      allowsMultipleSelection: false,
+    });
+
+    if (!result.canceled) {
+      setFormData({
+        ...formData,
+        image: result.assets[0].uri,
+      });
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setFormData({
+      ...formData,
+      image: "",
+    });
+  };
+
+  const handleAddRemoveImageClick = () => {
+    if (formData.image) {
+      handleRemoveImage();
+    } else {
+      pickImage();
+    }
+  }
+
   const handleLoginRedirectLink = () => {
     navigation.navigate("login");
   };
 
   const [formData, setFormData] = useState<RegistrationFormData>({
+    image: "",
     login: "",
     email: "",
     password: "",
@@ -40,6 +75,7 @@ const RegistrationScreen = () => {
 
   const handleRegister = () => {
     console.log("Form Data:", formData);
+    navigation.navigate("home");
   };
 
   const handleInputChange = (
@@ -79,11 +115,20 @@ const RegistrationScreen = () => {
             ]}
           >
             <View style={styles.avatarContent}>
-              <Image
-                style={styles.avatarImage}
-                source={require("@/assets/images/avatar.jpg")}
+              {
+                formData.image !== "" ? (
+                  <Image
+                    source={{ uri: formData.image }}
+                    style={styles.avatarImage}
+                  />
+                ) : (
+                  <View style={styles.avatarImage} />
+                )
+              }
+              <AddRemoveButton
+                hasContent={formData.image !== ""}
+                onPress={handleAddRemoveImageClick}
               />
-              <AddRemoveButton hasContent={true} onPress={() => {}} />
             </View>
             <View style={styles.content}>
               <Text style={styles.title}>Реєстрація</Text>
@@ -164,6 +209,7 @@ const styles = StyleSheet.create({
     height: 120,
     width: 120,
     borderRadius: globalStyles.sizes.borderRadius.avatar,
+    backgroundColor: globalStyles.colors.lightGray,
   },
   title: {
     fontSize: globalStyles.sizes.font.title,
