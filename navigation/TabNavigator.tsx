@@ -1,8 +1,8 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import PostsScreen from "./PostsScreen";
-import ProfileScreen from "./ProfileScreen";
-import CreatePostScreen from "./CreatePostScreen";
+import PostsScreen from "../app/screens/(tabs)/PostsScreen";
+import ProfileScreen from "../app/screens/(tabs)/ProfileScreen";
+import CreatePostScreen from "../app/screens/(tabs)/CreatePostScreen";
 import GridIcon from "@/assets/icons/GridIcon";
 import ProfileIcon from "@/assets/icons/ProfileIcon";
 import PlusIcon from "@/assets/icons/PlusIcon";

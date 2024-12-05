@@ -6,7 +6,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { ActivityIndicator } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import LoginScreen from "./screens/LoginScreen";
-import TabNavigator from "./screens/(tabs)/_layout";
+import TabNavigator from "../navigation/TabNavigator";
 
 const Stack = createStackNavigator();
 SplashScreen.preventAutoHideAsync();
