@@ -1,16 +1,17 @@
 import { globalStyles } from '@/styles/global';
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, ViewStyle } from 'react-native';
 
 interface UserPostCardProps {
     imageUrl: string;
     name: string;
     email: string;
+    style? : ViewStyle | ViewStyle[];
 }
 
-const UserPostCard: React.FC<UserPostCardProps> = ({ imageUrl, name, email }) => {
+const UserPostCard: React.FC<UserPostCardProps> = ({ imageUrl, name, email, style = {}}) => {
     return (
-        <View style={styles.card}>
+        <View style={[styles.card, style]}>
             <Image source={{ uri: imageUrl }} style={styles.image} />
             <View style={styles.textContainer}>
                 <Text style={styles.name}>{name}</Text>

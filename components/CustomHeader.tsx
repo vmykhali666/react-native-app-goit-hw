@@ -1,12 +1,17 @@
-import { BottomTabHeaderProps } from "@react-navigation/bottom-tabs";
+import { NavigationProp } from "@react-navigation/native";
+import { HeaderOptions } from "@react-navigation/elements";
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { getHeaderTitle } from "@react-navigation/elements";
 import { globalStyles } from "@/styles/global";
 import BackIcon from "@/assets/icons/BackIcon";
 import LogOutIcon from "@/assets/icons/LogOutIcon";
+import { ParamListBase, RouteProp } from "@react-navigation/native";
 
-interface CustomHeaderProps extends BottomTabHeaderProps {
+interface CustomHeaderProps {
+  options: HeaderOptions;
+  route: RouteProp<ParamListBase>;
+  navigation: NavigationProp<ParamListBase>;
   showLogOutButton?: boolean;
   showBackButton?: boolean;
 }

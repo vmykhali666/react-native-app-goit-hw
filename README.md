@@ -1,25 +1,19 @@
-# Навігація
+# Нативні компоненти
 
 ## Завдання
 
-1. Створити екран PostsScreen 
-2. Створити екран CreatePostsScreen
-3. Створити екран CommentsScreen
-4. Створити екран ProfileScreen
-5. Створити екран MapScreen
-6. Створити екран Home
-7. Підключити в проект навігацію.
-8. Додати в проект переходи між екранами LoginScreen, RegistrationScreen за допомогою компонента createStackNavigator
-9. З RegistrationScreen можна перейти на LoginScreen, натиснувши на текст Увійти
-10. З LoginScreen можна перейти на RegistrationScreen, натиснувши на текст Зареєструватися
-11. Після сабміту в LoginScreen, RegistrationScreen перекидає на Home, де відразу показується екран PostsScreen
-12. Підключити нижню навігацію, використовуючи createBottomTabNavigator
-13. У нижній навігації створити 3 переходи.
-14. Клік по іконці №1 веде на екран PostsScreen
-15. Клік по іконці №2 веде на екран CreatePostsScreen
-16. Клік по іконці №3 веде на екран ProfileScreen
-17. В хедері на екрані PostsScreen додати іконку для logout
-18. Стилізувати нижню навігацію
+1.Підключити камеру в компонент CreatePostsScreen;
+2.Під час відкриття екрану CreatePostsScreen активується камера і зображення з неї виводиться в блок з іконкою камери
+3.По кліку на іконку камери робиться знімок
+4.В інпут з плейсхолдером Назва можна додати назву фото
+5.В інпут з плейсхолдером Місцевість можна додати назву, де було зроблено знімок
+6.Додати визначення геолокації в момент створення посту при кліку на кнопку Опублікувати
+7.Після створення посту повинно перенаправляти на екран PostsScreen
+8.В компоненті окремого посту при кліку на іконку коментарів перекидає на екран CommentsScreen
+9.У компоненті окремого посту під час кліку на іконку геолокації перекидає на екран MapScreen, де можна побачити мапу з маркером, де була зроблена фотографія
+
+Також підключив google Maps SDK сервіс, для відображення їх карти
+
 
 <p align="center">
  <img width="300px" src="https://github.com/user-attachments/assets/1f996a9b-e9a1-4588-b621-3bffaec8c5f3" alt="screen"/>
@@ -36,4 +30,14 @@
 <p align="center">
  <img width="300px" src="https://github.com/user-attachments/assets/4bfc043c-ad8d-4781-b90d-092e9d6c99a4" alt="screen"/>
  <img width="300px" src="https://github.com/user-attachments/assets/709d3f2d-8da1-4986-bb53-b0de34b52b4a" alt="screen"/>
+ <img width="300px" src="https://github.com/user-attachments/assets/e801d74e-f7c5-4669-b3aa-d7ae508d60f1" alt="screen"/>
+</p>
+<p align="center">
+  <img width="300px" src="https://github.com/user-attachments/assets/56d1784d-0f51-4e6c-aa09-64bb8bfefa94" alt="screen"/>
+  <img width="300px" src="https://github.com/user-attachments/assets/2967270e-d46a-4fb9-ad20-3b70ab9cd93f" alt="screen"/>
+  <img width="300px" src="https://github.com/user-attachments/assets/8d4139db-03ab-4d83-9174-68ccb5acb1f1" alt="screen"/>
+</p>
+<p align="center">
+  <img width="300px" src="https://github.com/user-attachments/assets/b1279840-f971-479e-9017-edeb51527ff9" alt="screen"/>
+  <img width="300px" src="https://github.com/user-attachments/assets/1c3a12c7-2e9b-4009-a34a-197f207c2065" alt="screen"/>
 </p>
