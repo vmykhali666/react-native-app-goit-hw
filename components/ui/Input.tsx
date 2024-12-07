@@ -8,15 +8,19 @@ interface InputProps {
   icon?: React.FC<AppIconProps>;
   onTextChanged?: (text: string) => void;
   onBlur?: () => void;
+  onFocused?: () => void;
   value?: string;
+  children?: any;
 }
 
 const Input: React.FC<InputProps> = ({
   placeholder = "text",
   icon = null,
+  value = "",
+  children = null,
   onTextChanged,
   onBlur,
-  value = "",
+  onFocused,
 }) => {
   const [isFocused, setFocus] = useState(false);
   const [text, setText] = useState(value);
@@ -38,6 +42,13 @@ const Input: React.FC<InputProps> = ({
     }
   };
 
+  const handleOnFocus = () => {
+    setFocus(true);
+    if (onFocused) {
+      onFocused();
+    }
+  }
+
   return (
     <View style={[styles.inputContainer, isFocused && styles.focused]}>
       {icon &&
@@ -56,15 +67,17 @@ const Input: React.FC<InputProps> = ({
         value={text}
         onChangeText={handleTextChange}
         placeholderTextColor={globalStyles.colors.regularGray}
-        onFocus={() => setFocus(true)}
+        onFocus={handleOnFocus}
         onBlur={handleBlur}
       />
+      {children}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   inputContainer: {
+    position: "relative",
     flexDirection: "row",
     alignItems: "center",
     borderBottomWidth: 1,
