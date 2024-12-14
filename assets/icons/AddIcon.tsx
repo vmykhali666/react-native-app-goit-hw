@@ -1,4 +1,4 @@
-import { AppIconProps } from "@/data/types";
+import { AppIconProps } from "@/src/data/types";
 import React from "react";
 import Svg, { Circle, Path, SvgProps } from "react-native-svg";
 
