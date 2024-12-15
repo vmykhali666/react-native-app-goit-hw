@@ -24,12 +24,17 @@ export default {
       },
     },
     android: {
+      package: "com.pixeltale.reactapp",
       adaptiveIcon: {
         foregroundImage: "./assets/images/adaptive-icon.png",
         backgroundColor: "#ffffff",
       },
       softwareKeyboardLayoutMode: "pan",
-      permissions: ["android.permission.RECORD_AUDIO"],
+      permissions: [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION"
+      ],
     },
     web: {
       bundler: "metro",
