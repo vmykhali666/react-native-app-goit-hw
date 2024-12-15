@@ -48,7 +48,7 @@ const CustomTabBar: React.FC<CustomTabBarProps> = ({
   }
 
   return (
-    <View style={[styles.container, { paddingBottom: insets.bottom }]}>
+    <View style={[styles.container, { paddingBottom: insets.bottom || 34 }]}>
       {routes.map((route, index) => {
         const { options } = descriptors[route.key];
 

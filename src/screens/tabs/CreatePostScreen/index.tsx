@@ -241,7 +241,7 @@ const CreatePostScreen = () => {
         onPress={handleTrashPress}
         style={[
           styles.trashButton,
-          { bottom: insets.bottom },
+          { bottom: insets.bottom || 34},
           !isTrashActive && styles.disabled,
         ]}
       >
